@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="Панель глобальной аналитики электроники: каталог, цены и отзывы сообщества.">
+  <title>SpecIQ — электроника в цифрах</title>
+  <link rel="icon" href="/favicon.ico" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Основная навигация">
+      <a class="brand" href="/" aria-label="SpecIQ — главная">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-name">spec<span>iq</span><small>MARKET INTELLIGENCE</small></span>
+      </a>
+      <div class="workspace-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav class="primary-nav">
+        <button class="nav-item active" data-view="overview" aria-current="page"><span class="nav-icon">◫</span>Обзор<span class="nav-key">01</span></button>
+        <button class="nav-item" data-view="catalog"><span class="nav-icon">▤</span>Каталог<span class="nav-key">02</span></button>
+        <button class="nav-item" data-view="community"><span class="nav-icon">◌</span>Сообщество<span class="nav-key">03</span></button>
+        <button class="nav-item" data-view="sources"><span class="nav-icon">⌁</span>Источники<span class="nav-key">04</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="pulse-dot"></span><div><strong>Система активна</strong><small id="last-updated">Данные загружены</small></div></div>
+        <div class="sidebar-foot">ДЕМО-КОНТУР <span>v0.1</span></div>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Пространство</span><b>/</b><strong id="breadcrumb-current">Обзор</strong></div>
+        <div class="topbar-actions">
+          <button class="icon-button accessibility-button" id="speak-button" type="button" aria-pressed="false" title="Озвучить активный раздел"><span aria-hidden="true">◖</span><span class="button-label">Озвучить</span></button>
+          <button class="icon-button" id="contrast-button" type="button" aria-pressed="false" title="Переключить контрастность">◐</button>
+          <button class="icon-button font-button" id="font-button" type="button" title="Увеличить размер текста">A<sup>+</sup></button>
+          <div class="avatar" aria-label="Профиль пользователя">AI</div>
+        </div>
+      </header>
+
+      <main id="main-content" class="page-content" tabindex="-1">
+        <section class="view-panel active" id="view-overview" aria-labelledby="page-title">
+          <div class="hero-row">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> ГЛОБАЛЬНЫЙ РЫНОК · ОБЗОР</div>
+              <h1 id="page-title">Электроника,<br><em>без белых пятен.</em></h1>
+              <p class="hero-copy">Цены, характеристики и реальные сигналы пользователей — в одной точке.</p>
+            </div>
+            <div class="hero-aside"><span class="aside-kicker">СЕГОДНЯ · <span id="current-date">—</span></span><div class="hero-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><small>Рынки под наблюдением</small><strong id="market-count">—</strong></div>
+          </div>
+
+          <div class="metric-grid" aria-label="Ключевые показатели">
+            <article class="metric-card metric-primary"><div class="metric-label">Товаров в каталоге <span class="metric-icon">▤</span></div><div class="metric-value" id="metric-products">—</div><div class="metric-caption"><span class="metric-dot"></span>нормализованные модели</div></article>
+            <article class="metric-card"><div class="metric-label">Предложений <span class="metric-icon">↗</span></div><div class="metric-value" id="metric-offers">—</div><div class="metric-caption">текущие цены и наличие</div></article>
+            <article class="metric-card"><div class="metric-label">Источников <span class="metric-icon">⌁</span></div><div class="metric-value" id="metric-sources">—</div><div class="metric-caption">поставщики данных</div></article>
+            <article class="metric-card"><div class="metric-label">Отзывы <span class="metric-icon">◌</span></div><div class="metric-value" id="metric-reviews">—</div><div class="metric-caption">обработано для аналитики</div></article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel catalog-panel" aria-labelledby="catalog-heading">
+              <div class="panel-heading"><div><span class="section-index">01 / КАТАЛОГ</span><h2 id="catalog-heading">В фокусе</h2></div><button class="text-button" data-go-view="catalog">Весь каталог <span aria-hidden="true">↗</span></button></div>
+              <div class="toolbar compact-toolbar">
+                <label class="search-box"><span aria-hidden="true">⌕</span><input id="overview-search" type="search" placeholder="Модель, бренд…" aria-label="Поиск в каталоге"><kbd>/</kbd></label>
+                <select id="overview-category" aria-label="Фильтр по категории"><option value="">Все категории</option></select>
+              </div>
+              <div class="table-wrap"><table class="product-table"><thead><tr><th>УСТРОЙСТВО</th><th>КАТЕГОРИЯ</th><th>ПРЕДЛОЖЕНИЯ</th><th>ОТ</th><th></th></tr></thead><tbody id="overview-products"><tr><td colspan="5" class="loading-cell">Загружаем каталог…</td></tr></tbody></table></div>
+              <div class="panel-footer"><span id="catalog-count">—</span><span class="footer-status"><span class="pulse-dot"></span>обновлено сейчас</span></div>
+            </section>
+
+            <section class="panel insights-panel" aria-labelledby="insights-heading">
+              <div class="panel-heading"><div><span class="section-index">02 / СИГНАЛЫ</span><h2 id="insights-heading">Что замечают</h2></div><span class="signal-orb" aria-hidden="true">✳</span></div>
+              <p class="panel-intro">Темы, которые чаще всего встречаются в отзывах. Это сигналы, не подтверждённые дефекты.</p>
+              <div class="issue-list" id="overview-issues"><div class="empty-state compact">Анализируем отзывы…</div></div>
+              <div class="insight-foot"><span>ОСНОВА: <b id="review-base">—</b> ОТЗЫВОВ</span><button class="text-button" data-go-view="community">Подробнее <span aria-hidden="true">↗</span></button></div>
+            </section>
+          </div>
+          <div class="notice-bar"><span class="notice-icon">i</span><p>Демо-цифры синтетические. Подключите разрешённые фиды или API поставщиков, чтобы заменить их реальными данными.</p><button data-go-view="sources" class="notice-action">Подключить источник <span>→</span></button></div>
+        </section>
+
+        <section class="view-panel" id="view-catalog" aria-labelledby="catalog-title" hidden>
+          <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> КАТАЛОГ / 01</div><h1 id="catalog-title">Сравнение <em>моделей.</em></h1><p>Единая карточка — много рынков, источников и состояний товара.</p></div><button class="button button-dark" id="open-import">＋ Импортировать данные</button></div>
+          <section class="panel full-panel">
+            <div class="toolbar catalog-toolbar">
+              <label class="search-box"><span aria-hidden="true">⌕</span><input id="catalog-search" type="search" placeholder="Название, бренд или модель…" aria-label="Поиск по каталогу"><kbd>/</kbd></label>
+              <select id="catalog-category" aria-label="Категория"><option value="">Все категории</option></select>
+              <select id="catalog-region" aria-label="Регион"><option value="">Все рынки</option><option>Netherlands</option><option>Germany</option><option>United States</option><option>Global</option></select>
+              <select id="catalog-condition" aria-label="Состояние"><option value="">Любое состояние</option><option value="new">Новое</option><option value="used">Б/у</option><option value="refurbished">Восстановлено</option><option value="open_box">Вскрытая упаковка</option></select>
+              <select id="catalog-sort" aria-label="Сортировка"><option value="name">По названию</option><option value="price_asc">Сначала дешевле</option><option value="price_desc">Сначала дороже</option><option value="newest">Сначала новые</option></select>
+            </div>
+            <div class="catalog-meta"><span id="catalog-result-count">—</span><span class="muted">Цены показаны в валюте самого доступного предложения</span></div>
+            <div class="catalog-grid" id="catalog-grid"><div class="empty-state">Загружаем товары…</div></div>
+            <div class="pagination"><button class="button button-quiet" id="prev-page" disabled>← Назад</button><span id="page-label">Страница 1</span><button class="button button-quiet" id="next-page">Далее →</button></div>
+          </section>
+        </section>
+
+        <section class="view-panel" id="view-community" aria-labelledby="community-title" hidden>
+          <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> СООБЩЕСТВО / 02</div><h1 id="community-title">Опыт людей,<br><em>не только спецификации.</em></h1><p>Объяснимые тематические сигналы из разрешённых отзывов и форумных экспортов.</p></div><span class="large-signal">✳</span></div>
+          <div class="community-summary" id="community-summary"></div>
+          <section class="panel full-panel"><div class="panel-heading"><div><span class="section-index">СВОДКА ПО КАТЕГОРИЯМ</span><h2>Частые темы</h2></div><span class="tiny-note">Правила на ключевых словах · EN + RU</span></div><div id="community-issues" class="community-issue-grid"><div class="empty-state">Загружаем аналитику…</div></div></section>
+          <div class="notice-bar"><span class="notice-icon">i</span><p>Анализ выдаёт метки и цитаты для проверки человеком. Доля упоминаний не равна доле неисправных устройств.</p></div>
+        </section>
+
+        <section class="view-panel" id="view-sources" aria-labelledby="sources-title" hidden>
+          <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> ИНТЕГРАЦИИ / 03</div><h1 id="sources-title">Источники <em>данных.</em></h1><p>Импортируйте нормализованные выгрузки от источников, которыми вы вправе пользоваться.</p></div><button class="button button-dark" id="open-import-secondary">＋ Новый импорт</button></div>
+          <section class="source-layout">
+            <div class="panel full-panel"><div class="panel-heading"><div><span class="section-index">ПОДКЛЮЧЁННЫЕ ФИДЫ</span><h2>Источники</h2></div><span class="live-pill"><span class="pulse-dot"></span>LOCAL</span></div><div class="source-list" id="source-list"><div class="empty-state">Загружаем источники…</div></div></div>
+            <aside class="panel import-guide"><div class="section-index">БЫСТРЫЙ СТАРТ</div><h2>Данные —<br><em>в одном формате.</em></h2><p>Загрузите JSON с предложениями. Задача нормализует модель, обновит карточку и сохранит снимок цены.</p><pre><code>{
+  "source": "partner_feed",
+  "records": [{
+    "name": "Laptop 14-inch",
+    "brand": "Example",
+    "model": "E14",
+    "region": "Netherlands",
+    "price": "899.00",
+    "currency": "EUR"
+  }]
+}</code></pre><button class="button button-quiet button-wide" id="download-example">Скачать пример JSON <span>↓</span></button><p class="small-note">Для маркетплейсов используйте официальные API или согласованные фиды. CAPTCHA/anti-bot обход не реализован.</p></aside>
+          </section>
+          <section class="panel full-panel recent-jobs"><div class="panel-heading"><div><span class="section-index">ОБРАБОТКА</span><h2>Последние задачи</h2></div><button class="text-button" id="refresh-jobs">Обновить ↻</button></div><div class="table-wrap"><table class="jobs-table"><thead><tr><th>ИСТОЧНИК</th><th>СТАТУС</th><th>ПРОГРЕСС</th><th>СОЗДАНО</th><th>ОШИБКА</th></tr></thead><tbody id="jobs-table"><tr><td colspan="5" class="loading-cell">Задач пока нет</td></tr></tbody></table></div></section>
+        </section>
+
+        <footer class="page-footer"><span>SpecIQ / market intelligence</span><span>СОБИРАЙТЕ ОТВЕТСТВЕННО <i>·</i> АНАЛИЗИРУЙТЕ ПРОЗРАЧНО</span></footer>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="modal" id="import-modal" aria-labelledby="import-title">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Закрыть окно">×</button></form>
+    <div class="section-index">ПАКЕТНЫЙ ИМПОРТ / JSON</div><h2 id="import-title">Добавить предложения.</h2><p class="modal-copy">Данные валидируются перед постановкой в очередь. Поле <code>source</code> — название авторизованного источника.</p>
+    <label class="field-label" for="source-name">ИСТОЧНИК</label><input class="text-input" id="source-name" maxlength="120" value="partner_feed" placeholder="partner_feed">
+    <label class="field-label" for="feed-url">HTTPS JSON-ФИД (ОПЦИОНАЛЬНО)</label><input class="text-input" id="feed-url" type="url" maxlength="2000" placeholder="https://api.example.com/catalog.json"><p class="small-note">Хост должен быть заранее разрешён в AUTHORIZED_SOURCE_HOSTS.</p>
+    <label class="field-label" for="api-key">КЛЮЧ ИМПОРТА (ЕСЛИ ТРЕБУЕТСЯ)</label><input class="text-input" id="api-key" type="password" autocomplete="off" placeholder="X-Ingestion-Key">
+    <label class="field-label" for="import-file">ФАЙЛ ДАННЫХ</label><input class="file-input" id="import-file" type="file" accept=".json,application/json">
+    <label class="field-label" for="import-json">ИЛИ ВСТАВЬТЕ JSON</label><textarea class="text-input json-input" id="import-json" rows="9" spellcheck="false" placeholder='{"records":[{"name":"Laptop 14-inch","brand":"Example","price":"899.00","currency":"EUR"}]}'></textarea>
+    <div class="modal-actions"><button class="button button-quiet" id="cancel-import" type="button">Отмена</button><button class="button button-accent" id="submit-import" type="button">Проверить и импортировать <span>→</span></button></div>
+    <div class="modal-message" id="import-message" role="status" aria-live="polite"></div>
+  </dialog>
+  <dialog class="modal product-modal" id="product-modal" aria-labelledby="product-modal-title"><form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Закрыть карточку">×</button></form><div id="product-detail-content"><div class="loading-cell">Загружаем…</div></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div id="accessibility-status" class="sr-only" aria-live="polite"></div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

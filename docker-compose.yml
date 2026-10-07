@@ -1,0 +1,65 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: electronics
+      POSTGRES_USER: electronics
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-dev-only}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U electronics -d electronics"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+
+  api:
+    build: .
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://electronics:${POSTGRES_PASSWORD:-local-dev-only}@db:5432/electronics
+      REDIS_URL: redis://redis:6379/0
+      USE_CELERY: "true"
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-true}
+      AUTHORIZED_SOURCE_HOSTS: ${AUTHORIZED_SOURCE_HOSTS:-}
+      INGESTION_API_KEY: ${INGESTION_API_KEY:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  worker:
+    build: .
+    command: ["celery", "-A", "src.celery_app.celery_app", "worker", "--loglevel=INFO", "--hostname=hardware_celery_worker@%h", "--concurrency=2"]
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://electronics:${POSTGRES_PASSWORD:-local-dev-only}@db:5432/electronics
+      REDIS_URL: redis://redis:6379/0
+      USE_CELERY: "true"
+      SEED_DEMO_DATA: "false"
+      AUTHORIZED_SOURCE_HOSTS: ${AUTHORIZED_SOURCE_HOSTS:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
